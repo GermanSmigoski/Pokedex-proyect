@@ -1,0 +1,27 @@
+.body{
+    width: 1920px;
+    height: 1000px;
+    background-color: #f57f3b;
+}
+
+.title{
+   text-align: center;
+   margin: 150px;
+   width: 50%;
+   height: 50%;
+}
+
+.button{
+    padding: 15px 32px;
+    border-color: black;
+}
+
+.button:hover{
+    background-color: #4CAF50;
+    color: white;
+}
+
+.ash{
+    width: 450px;
+    width: 450px;
+}

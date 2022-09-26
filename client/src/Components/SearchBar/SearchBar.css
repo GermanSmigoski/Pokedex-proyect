@@ -1,0 +1,6 @@
+.big {
+    display: flex ;
+    padding: 30px;
+    gap: 30px;
+    margin-left: 10%;
+}
