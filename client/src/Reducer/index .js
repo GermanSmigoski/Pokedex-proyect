@@ -14,20 +14,20 @@ const rootReducer = (state = intialState, action) => {
       };
 
     case "GET_TYPES":
-      return{
+      return {
         ...state,
-        types: action.payload
-      }
+        types: action.payload,
+      };
     case "POST_POKEMON":
-      return{
-        ...state
-      }
+      return {
+        ...state,
+      };
 
     case "SEARCH_NAME":
-      return{
+      return {
         ...state,
-        pokemons: action.payload
-      }
+        pokemons: action.payload,
+      };
     case "DB_FILTER":
       let allPokemons = state.allPokemons;
       let dbFilter =
@@ -39,27 +39,49 @@ const rootReducer = (state = intialState, action) => {
         pokemons: action.payload === "All" ? state.allPokemons : dbFilter,
       };
     case "ATK_FILTER":
-      let pokemonsAll = state.allPokemons
-      let atkFiltered = action.payload = 'Min' ?  pokemonsAll.sort((a,b) => (a.attack - b.attack)) :
-      pokemonsAll.sort((a,b) => (b.attack - a.attack))
-      return {
-        ...state,
-        pokemons: [...atkFiltered,]
-      };
-    case "NAME_FILTER":
-      let nameFiltered = action.payload === 'A-Z' ? state.allPokemons.sort((a, b) => a.name.localeCompare(b.name)) :
-      state.allPokemons.sort((a, b) => b.name.localeCompare(a.name)) 
-      return {
-        ...state,
-        pokemons: [...nameFiltered,]
-      };
-      case "TYPE_FILTER":
-      let pokemonsAll1 = state.allPokemons
-      let typeFiltered =  pokemonsAll1.filter((el) => el.types?.map((el) => el.includes(action.payload)))
-      return{
-        state,
-        pokemons: action.payload = 'All' ? [...allPokemons] : [...typeFiltered]
+      let atkFilter;
+      if (action.payload === "Default") {
+        if (state.allPokemons.length) atkFilter = [...state.allPokemons];
+        else atkFilter = [...state.pokemons];
+      } else {
+        atkFilter =
+          action.payload === "Min"
+            ? [...state.allPokemons].sort((a, b) => {
+                if (a.attack > b.attack) return 1;
+                if (b.attack > a.attack) return -1;
+                return 0;
+              })
+            : [...state.allPokemons].sort((a, b) => {
+                if (a.attack > b.attack) return -1;
+                if (b.attack > a.attack) return 1;
+                return 0;
+              });
+        return {
+          ...state,
+          pokemons: [...atkFilter],
+        };
       }
+    case "NAME_FILTER":
+      let nameFiltered =
+        action.payload === "A-Z"
+          ? state.allPokemons.sort((a, b) => a.name.localeCompare(b.name))
+          : state.allPokemons.sort((a, b) => b.name.localeCompare(a.name));
+      return {
+        ...state,
+        pokemons: [...nameFiltered],
+      };
+    case "TYPE_FILTER":
+      let pokemonsAll1 = state.allPokemons;
+      let typeFiltered = pokemonsAll1.filter(el => el.types.map(el=>el.name).includes(action.payload))
+      let otroFilter = action.payload === 'All' ? pokemonsAll1 : typeFiltered
+      if(!otroFilter.length){
+        otroFilter = [{msg:'Pokemon not found'}]
+      } 
+      return {
+        ...state,
+        pokemons: otroFilter
+
+      };
     default:
       return {
         state,

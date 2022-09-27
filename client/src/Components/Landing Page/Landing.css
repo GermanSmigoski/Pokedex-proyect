@@ -1,27 +1,36 @@
-.body{
-    width: 1920px;
-    height: 1000px;
+.container{
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqGflm9JxmOOH1J5k5-zBM9fy-UwmDWUnVlg&usqp=CAU);
+    background-repeat: no-repeat;
+    background-size: cover;
     background-color: #f57f3b;
+    height: 100vh;
 }
 
 .title{
    text-align: center;
-   margin: 150px;
+   margin: auto;
    width: 50%;
    height: 50%;
 }
 
 .button{
+    height: 50px;
+    width: 120px;
     padding: 15px 32px;
     border-color: black;
+    border-radius: 7px;
+    position: relative;
+    z-index: 1;
 }
 
 .button:hover{
-    background-color: #4CAF50;
-    color: white;
+    background-color: #0016da;
+    color: #6574ffe0;
 }
 
 .ash{
-    width: 450px;
-    width: 450px;
+    width: 920px;
+    height: 600px;
+    flex-direction: row;
+    margin-left: 30%;
 }

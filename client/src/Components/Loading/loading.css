@@ -1,0 +1,10 @@
+.spinner{
+    /* height: 450px;
+    width: 450px; */
+    position: relative;
+}
+
+.loading{
+    text-align: center;
+    font-size: x-large;
+}
