@@ -1,0 +1,38 @@
+.paginator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  flex-direction: column;
+  text-align: center;
+}
+
+.previous,
+.next {
+  border-radius: 16px;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.page {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  line-height: 15px;
+  text-align: center;
+  margin: 0 10px;
+  border-radius: 50%;
+  background-color: #fff;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.current-page {
+  background-color: #333;
+  color: #fff;
+}
+
+.current-page::before {
+  opacity: 1;
+}

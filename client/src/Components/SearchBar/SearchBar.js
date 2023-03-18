@@ -1,83 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getPokemons , DbFilter , AtkFilter , NameFilter, TypeFilter, } from "../../Actions";
-import NavBar from "./NavBar";
-import './SearchBar.css'
+import Button from "@mui/material/Button";
+import "./SearchBar.css";
 
-export default function SearchBar(){
-  const dispatch = useDispatch();
-  const types = useSelector((state) => state.types)
-
-function handleClick(e){
-  e.preventDefault()
-  dispatch(getPokemons(e))
-}
-
-  function handleFilterAtk(e){
-    dispatch(AtkFilter(e.target.value))
-  }
-  
-  
-  function handleFilterDB(e){
-    dispatch(DbFilter(e.target.value))
-  }
-
-  function hanldeNameFilter(e){
-    dispatch(NameFilter(e.target.value))
-  }
-
-  function handleTypeFilter(e){
-    dispatch(TypeFilter(e.target.value))
-    console.log(e.target.value)
-  }
+export default function SearchBar() {
   return (
-    <div className="big">
-      <div>
-        <Link to="/pokemons">Create Pokemon</Link>
-      </div>
-      <div>
-        <button
-          onClick={(e) => {
-            handleClick(e);
-          }}
-          >
-          Reload page
-        </button>
-      </div>
-          <NavBar/>
-      <div>
-        <select onChange={e => handleTypeFilter(e)}>
-          <option value='All'>All</option>
-          {types?.map((el) => {
-            return(
-              <option key={el.id} value={el.name}>{el.name}</option>
-              )
-          })}
-        </select>
-      </div>
-      <div>
-        <select onChange={e => hanldeNameFilter(e)}>
-          <h3>Name</h3>
-          <option value="A-Z">A-Z</option>
-          <option value="Z-A">Z-A</option>
-        </select>
-      </div>
-      <div>
-        <select onChange={e => handleFilterAtk(e)}>
-          <h3>Atack</h3>
-          <option value="Default">Default</option>
-          <option value="Max">Max</option>
-          <option value="Min">Min</option>
-        </select>
-      </div>
-      <div>
-        <select onChange={e => handleFilterDB(e)}>
-          <option value="All">All</option>
-          <option value="created">Db</option>
-          <option value="Api">Api</option>
-        </select>
-      </div>
+    <div className="big" back>
+      <Link to="/favorites">
+        <Button variant="contained">Favorite Pokemons</Button>
+      </Link>
+      <Link to="aboutMe">
+        <Button style={{alingItems:"center"}} variant="contained" >About me</Button>
+      </Link>
+      <img
+        alt=""
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1200px-International_Pok%C3%A9mon_logo.svg.png "
+        style={{width:"200px", height:"67"}}
+      ></img>
+      <Link className="link" to="/pokemons">
+        <Button variant="contained">Create Pokemon</Button>
+      </Link>
+      <Link to="/">
+        <Button variant="contained">Home</Button>
+      </Link>
     </div>
   );
-};
+}

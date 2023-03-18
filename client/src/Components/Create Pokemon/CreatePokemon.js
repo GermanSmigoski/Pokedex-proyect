@@ -5,11 +5,14 @@ import { Link, useHistory } from "react-router-dom";
 import { getTypes } from "../../Actions";
 import { createPokemon } from "../../Actions";
 import Loading from "../Loading/Loading";
-
+import "./Create.css";
 export const CreatePokemon = () => {
   const dispatch = useDispatch();
   const allTypes = useSelector((state) => state.types);
   const history = useHistory();
+  useEffect(() => {
+    dispatch(getTypes());
+  }, [dispatch]);
 
   const [input, setInput] = useState({
     name: "",
@@ -30,17 +33,22 @@ export const CreatePokemon = () => {
     });
   };
 
-  const handleButton = (e) => {
+  const handleSelect = (e) => {
     setInput({
       ...input,
-      types: [...input.types, e.target.value],
+      types: [...new Set([...input.types, e.target.value])],
     });
-    console.log(e.target.value)
+  };
+
+  const handleDelete = (type) => {
+    setInput({
+      ...input,
+      types: input.types.filter((typeDel) => typeDel !== type),
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(input);
     dispatch(createPokemon(input));
     alert("Pokemon created correctly");
     setInput({
@@ -57,18 +65,13 @@ export const CreatePokemon = () => {
     history.push("/home");
   };
 
-  useEffect(() => {
-    dispatch(getTypes());
-    console.log(allTypes);
-  }, []);
-
   return (
-    <div>
+    <div className="bigOne">
       {allTypes?.length > 0 ? (
         <div>
-          <Link to="/home">Back</Link>
-          <div>
-            <form>
+          <Link to="/">Back</Link>
+          <div className="box-from">
+            <form onSubmit={handleSubmit}>
               <div>
                 <label>Name</label>
                 <input
@@ -147,21 +150,35 @@ export const CreatePokemon = () => {
               <div>
                 <label>Image</label>
                 <input
-                  type="image "
+                  type="text"
                   value={input.image}
                   name="image"
                   onChange={(e) => handleChange(e)}
                 />
               </div>
+              <img
+                alt=""
+                style={{ width: "150px", height: "100px" }}
+                src={`${input.image}`}  
+              />
               <div>
-                {allTypes?.map(el => {
-                  return(
-                    <div key={input.id}>
-                      <label>{el.name}</label>
-                      <input type='checkbox'value={input.types}  name={el.name}/>
-                    </div>
-                  )
-                })}
+                <select onChange={(e) => handleSelect(e)}>
+                  {allTypes?.map((type) => (
+                    <option key={type.id} value={type.name} name="types">
+                      {type.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                {input.types?.map((type) => (
+                  <div key={type}>
+                    <p>{type}</p>
+                    <button type="button" onClick={() => handleDelete(type)}>
+                      x
+                    </button>
+                  </div>
+                ))}
               </div>
               <button onSubmit={(e) => handleSubmit(e)} type="submit">
                 Create Pokemon

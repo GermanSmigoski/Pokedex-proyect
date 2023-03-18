@@ -5,7 +5,7 @@ const getTypes = async () => {
   const apiCall = await axios("https://pokeapi.co/api/v2/type");
 
   const types = apiCall.data.results.map((el) => el.name);
-  types.forEach((el) => {
+  types?.forEach((el) => {
     Tipo.findOrCreate({
       where: { name: el },
     });

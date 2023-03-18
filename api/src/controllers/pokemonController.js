@@ -2,7 +2,7 @@ const axios = require("axios");
 const { Pokemon, Tipo } = require("../db");
 
 const getApiPokemons = async () => {
-  const apiCall = await axios("https://pokeapi.co/api/v2/pokemon?limit=12");
+  const apiCall = await axios("https://pokeapi.co/api/v2/pokemon?limit=50");
 
   const moreInfo = apiCall.data.results.map((el) => {
     return el.url;
@@ -21,6 +21,7 @@ const getApiPokemons = async () => {
       speed: info.data.stats.find((e) => e.stat.name === "speed").base_stat,
       types: info.data.types.map((e) => (e = { name: e.type.name })),
       image: info.data.sprites.other.dream_world.front_default,
+      detail: info.data.sprites.versions["generation-v"]["black-white"].animated.front_default
     });
   }
 
@@ -49,3 +50,4 @@ const getAllPokemons = async () => {
 module.exports = {
   getAllPokemons,
 };
+  

@@ -1,0 +1,95 @@
+@import url("https://fonts.googleapis.com/css2?family=Poor+Story&display=swap");
+
+.pokemon-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 260px;
+  height: 400px; /* add a fixed height to make the cards the same size */
+  border-radius: 10px;
+  padding: 20px;
+  margin: 5px 40px 5px 40px;
+  border: 2px solid #3d3d3d;
+  backdrop-filter: blur(20px);
+}
+
+.pokemon-image img {
+  max-width: 150px;
+  max-height: 150px;
+  height: auto;
+  border: 1px solid #3d3d3d;
+}
+
+.pokemon-name {
+  margin-top: 0;
+  font-size: 24px;
+  color: #000000;
+  text-transform: capitalize;
+}
+
+.pokemon-types {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+
+.type {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #000000;
+  text-align: center;
+  margin-right: 10px;
+}
+
+
+.pokemon-stats {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #000000;
+}
+
+.pokemon-stats p {
+  margin: 5px 0;
+}
+
+.fire{
+  background-color: red;
+}
+
+.grass{
+  background-color: green;
+}
+
+.water{
+  background-color: blue;
+}
+
+.bug{
+  background-color: greenyellow;
+}
+
+.normal{
+  background-color: brown;
+}
+
+.electric{
+  background-color: yellow;
+}
+
+.poison{
+  background-color: purple;
+}
+
+.ground{
+  background-color: burlywood;
+}
+
+.fairy{
+  background-color: pink;
+}

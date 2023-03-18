@@ -1,11 +1,15 @@
 import axios from "axios";
 
 export const getPokemons = () => async (dispatch) => {
-  let res = await axios("http://localhost:3001/pokemons");
-  dispatch({
-    type: "GET_POKEMONS",
-    payload: res.data,
-  });
+  try {
+    let res = await axios("http://localhost:3001/pokemons");
+    dispatch({
+      type: "GET_POKEMONS",
+      payload: res.data,
+    });
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const getTypes = () => async (dispatch) => {
@@ -16,17 +20,25 @@ export const getTypes = () => async (dispatch) => {
   });
 };
 
+export const getDetail = (id) => async (dispatch) => {
+  let res = await axios(`http://localhost:3001/pokemons${id}`);
+  dispatch({
+    type: "GET_DETAIL",
+    payload: res.data,
+  });
+};
+
 export const createPokemon = (payload) => async () => {
   let res = await axios.post("http://localhost:3001/pokemons", payload);
   return {
     type: "POST_POKEMON",
-    payload,
+    res,
   };
 };
 
 export const searchName = (name) => async (dispatch) => {
   try {
-    let res = await axios("http://localhost:3001/pokemons?name=" + name);
+    let res = await axios(`http://localhost:3001/pokemons?name=${name}`);
     dispatch({
       type: "SEARCH_NAME",
       payload: res.data,

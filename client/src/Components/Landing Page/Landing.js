@@ -11,6 +11,7 @@ export default function Landing() {
           <button className="button">Enter</button>
         </Link>
         <img
+        alt=""
           className="ash"
           src="https://cdn.discordapp.com/attachments/770844054102736927/1020781509420003470/png-transparent-pokemon-x-and-y-ash-ketchum-pikachu-poke-ball-pokemon-ball-gym-teams-boy-sticker-mural.png"
         />

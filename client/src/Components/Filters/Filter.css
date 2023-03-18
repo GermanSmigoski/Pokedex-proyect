@@ -1,0 +1,7 @@
+.filters{
+    display: flex;
+    justify-content: space-around;
+    max-height: 70px;
+    backdrop-filter: blur(30px);
+}
+

@@ -2,6 +2,8 @@ const intialState = {
   pokemons: [],
   allPokemons: [],
   types: [],
+  detail: [],
+  currenPage: 1,
 };
 
 const rootReducer = (state = intialState, action) => {
@@ -72,15 +74,21 @@ const rootReducer = (state = intialState, action) => {
       };
     case "TYPE_FILTER":
       let pokemonsAll1 = state.allPokemons;
-      let typeFiltered = pokemonsAll1.filter(el => el.types.map(el=>el.name).includes(action.payload))
-      let otroFilter = action.payload === 'All' ? pokemonsAll1 : typeFiltered
-      if(!otroFilter.length){
-        otroFilter = [{msg:'Pokemon not found'}]
-      } 
+      let typeFiltered = pokemonsAll1.filter((el) =>
+        el.types.map((el) => el.name).includes(action.payload)
+      );
+      let otroFilter = action.payload === "All" ? pokemonsAll1 : typeFiltered;
+      if (!otroFilter.length) {
+        otroFilter = [{ msg: "Pokemon not found" }];
+      }
       return {
         ...state,
-        pokemons: otroFilter
-
+        pokemons: otroFilter,
+      };
+    case "GET_DETAIL":
+      return {
+        ...state,
+        detail: action.payload,
       };
     default:
       return {

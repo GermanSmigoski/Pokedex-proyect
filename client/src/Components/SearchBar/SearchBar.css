@@ -1,6 +1,11 @@
-.big {
-    display: flex ;
-    padding: 30px;
-    gap: 30px;
-    margin-left: 10%;
+.big{
+  min-height: 60px;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  background-image: url(https://img.freepik.com/vector-premium/paisaje-fondo-dibujos-animados-casa-montanas_703869-85.jpg?w=2000);
+}
+
+.big button:Link{
+  text-decoration: none;
 }
