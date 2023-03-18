@@ -4,8 +4,9 @@
   justify-content: space-around;
   padding: 10px;
   background-image: url(https://img.freepik.com/vector-premium/paisaje-fondo-dibujos-animados-casa-montanas_703869-85.jpg?w=2000);
+  backdrop-filter: blur(13px);
 }
 
-.big button:Link{
+.searchLink{
   text-decoration: none;
 }

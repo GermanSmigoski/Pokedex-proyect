@@ -8,13 +8,11 @@ function App() {
   return (
     <BrowserRouter>
       <SearchBar></SearchBar>
-      <div className="App">
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route path="/home" component={Home} />
-          <Route exact path="/pokemons" component={CreatePokemon} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path="/" component={LandingPage} />
+        <Route path="/home" component={Home} />
+        <Route exact path="/pokemons" component={CreatePokemon} />
+      </Switch>
     </BrowserRouter>
   );
 }

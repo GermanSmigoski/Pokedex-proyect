@@ -6,6 +6,7 @@ import { getTypes } from "../../Actions";
 import { createPokemon } from "../../Actions";
 import Loading from "../Loading/Loading";
 import "./Create.css";
+import Preview from "./Preview";
 export const CreatePokemon = () => {
   const dispatch = useDispatch();
   const allTypes = useSelector((state) => state.types);
@@ -66,12 +67,11 @@ export const CreatePokemon = () => {
   };
 
   return (
-    <div className="bigOne">
+    <div className="createContainer">
       {allTypes?.length > 0 ? (
         <div>
-          <Link to="/">Back</Link>
-          <div className="box-from">
-            <form onSubmit={handleSubmit}>
+          <div className="boxForm">
+            <form className="createForm" onSubmit={handleSubmit}>
               <div>
                 <label>Name</label>
                 <input
@@ -150,17 +150,12 @@ export const CreatePokemon = () => {
               <div>
                 <label>Image</label>
                 <input
-                  type="text"
+                  type="file"
                   value={input.image}
                   name="image"
                   onChange={(e) => handleChange(e)}
                 />
-              </div>
-              <img
-                alt=""
-                style={{ width: "150px", height: "100px" }}
-                src={`${input.image}`}  
-              />
+              </div>    
               <div>
                 <select onChange={(e) => handleSelect(e)}>
                   {allTypes?.map((type) => (
@@ -183,6 +178,17 @@ export const CreatePokemon = () => {
               <button onSubmit={(e) => handleSubmit(e)} type="submit">
                 Create Pokemon
               </button>
+              <Preview
+                name={input.name}
+                image={input.image}
+                types={input.types}
+                attack={input.attack}
+                defense={input.defense}
+                hp={input.hp}
+                weight={input.weight}
+                height={input.height}
+                speed={input.speed}
+              />
             </form>
           </div>
         </div>
